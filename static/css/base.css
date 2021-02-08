@@ -1,3 +1,16 @@
 html {
     height: 100%;
 }
+
+.header-container {
+    padding-top: 164px;
+}
+
+/* Hero image */
+.home-page {
+    height: 100vh;
+    background: url('/media/landing-page.jpg') no-repeat center top;
+    position: relative;
+    top: -3rem;
+    background-size: cover;
+}
