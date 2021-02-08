@@ -9,8 +9,25 @@ html {
 /* Hero image */
 .home-page {
     height: 100vh;
-    background: url('/media/landing-page.jpg') no-repeat center top;
+    background: url('/media/trainer.jpg') no-repeat center top;
     position: relative;
     top: -3rem;
     background-size: cover;
+}
+
+.landing-text-container {
+    padding-top: 35rem;
+}
+
+.text-red {
+    color: #cc0001 !important;
+}
+
+.border-red {
+    border: 1px solid #cc0001 !important;
+}
+
+.btn-red {
+    background: #cc0001;
+    color: #000;
 }
