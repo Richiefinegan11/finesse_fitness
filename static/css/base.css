@@ -2,11 +2,16 @@ html {
     height: 100%;
 }
 
+body {
+    font-family: 'Lexend Mega', sans-serif;
+}
+
 .header-container {
     padding-top: 164px;
 }
 
 /* Hero image */
+
 .home-page {
     height: 100vh;
     background: url('/media/trainer.jpg') no-repeat center top;
@@ -16,7 +21,7 @@ html {
 }
 
 .landing-text-container {
-    padding-top: 20rem;
+    padding-top: 15rem;
 }
 
 .text-red {
@@ -69,3 +74,5 @@ html {
 .nav-link {
     padding: .5rem 0rem !important;
 }
+
+/* Subscription section */
