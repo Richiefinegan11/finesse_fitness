@@ -54,6 +54,7 @@
 ### Media 
   * The images for the home page was obtained from the below:
     * [Pop Sugar](https://www.popsugar.com.au/fitness/How-Start-Working-Out-Gym-45669889)
+    * [Strength and Fitness Supplies](https://strengthandfitness.ie/blogs/strength-and-fitness-blog/how-to-clean-gym-equipment)
 
 ### Acknowledgements
 

@@ -19,7 +19,7 @@ html,body
     width: fit-content;
 }
 
-/* Hero image */
+/* Home Page */
 
 .home-page {
     height: 100vh;
@@ -96,7 +96,6 @@ html,body
 
 
 /* Media Queries */
-
 
 @media (max-width: 350px){
     body {
