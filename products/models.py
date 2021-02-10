@@ -21,6 +21,7 @@ class Product(models.Model):
     category = models.ForeignKey('Category', null=True, blank=True, on_delete=models.SET_NULL)
     product_code = models.CharField(max_length=36)
     name= models.CharField(max_length=75)
+    gender=models.CharField(max_length=5, null=True, blank=True)
     description = models.TextField()
     price = models.DecimalField(max_digits=6, decimal_places=2)
     rating = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
