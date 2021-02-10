@@ -91,9 +91,13 @@ html,body
 }
 
 .section-divider {
-    padding: 2em;
+    margin: 3em 0;
 }
 
+hr {
+    border: 2px solid #a30202;
+    border-radius: 2px;
+}
 
 /* Media Queries */
 
