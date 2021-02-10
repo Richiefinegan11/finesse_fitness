@@ -99,6 +99,10 @@ hr {
     border-radius: 2px;
 }
 
+.product-detail {
+    padding-bottom: 3rem;
+}
+
 /* Media Queries */
 
 @media (max-width: 350px){
