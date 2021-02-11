@@ -30,7 +30,7 @@
 }
 
 #sort-trigger:hover {
-   cursor: cell;
+   cursor: pointer;
 }
 
 @media (max-width:481px){

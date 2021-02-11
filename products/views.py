@@ -23,6 +23,8 @@ def all_products(request):
                 if item_category == 'All':
                     products = Product.objects.order_by(sort_by)
 
+                products = products.order_by(sort_by)
+
         if 'q' in request.GET:
             query = request.GET['q']
             if not query:
