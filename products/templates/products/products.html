@@ -17,21 +17,48 @@
 
 {% block content %}
     <div class="container-fluid">
-            <div class="col text-center mt-3">
-                <h2 class="text-red pb-2">Products</h2>
-                {% for category in categories %}
-                    <li class="list-inline-item category-button">
-                        <a href="{% url 'products' %}?category={{ category.name }}">
-                            <div class="p-1">{{ category.friendly_name }}</div>
-                        </a>
-                    </li>
-                {% endfor %}
+        <div class="col text-center mt-3">
+            <h2 class="text-red pb-2">Products</h2>
+            {% for category in categories %}
                 <li class="list-inline-item category-button">
-                    <a href="{% url 'products' %}">
-                        <div class="p-1">All</div>
+                    <a href="{% url 'products' %}?category={{ category.name }}">
+                        <div class="p-1">{{ category.friendly_name }}</div>
                     </a>
                 </li>
-                <hr class="w-50 mb-1">
+            {% endfor %}
+            <li class="list-inline-item category-button">
+                <a href="{% url 'products' %}">
+                    <div class="p-1">All</div>
+                </a>
+            </li>
+            <hr class="w-50 mb-1">
+        </div>
+        <div class="text-end d-flex justify-content-center sort-section pt-3">
+            <!-- Trigger element that hides/displays sorting icons -->
+            <p class="text-red pe-1 " id="sort-trigger"> Sort
+                <i class="fas fa-sort"></i>
+            </p>
+            <!-- Sorting Icon container -->
+            <div class="sort-width text-red" id="sort-container">
+                <a href="{% url 'products' %}?category={{ active_category }}&sort=name" class="mx-1 p-1">
+                    <i class="fas fa-sort-alpha-down"></i>
+                </a>
+                <a href="{% url 'products' %}?category={{ active_category }}&sort=-name" class="mx-1 p-1">
+                    <i class="fas fa-sort-alpha-up"></i>
+                </a>
+                <a href="{% url 'products' %}?category={{ active_category }}&sort=rating" class="mx-1 p-1">
+                    <i class="fas fa-star"></i><i class="fas fa-long-arrow-alt-down"></i>
+                </a>
+                <a href="{% url 'products' %}?category={{ active_category }}&sort=-rating" class="mx-1 p-1">
+                    <i class="fas fa-star"></i><i class="fas fa-long-arrow-alt-up"></i>
+                </a>
+                <a href="{% url 'products' %}?category={{ active_category }}&sort=price" class="mx-1 p-1">
+                    <i class="far fa-money-bill-alt"></i><i class="fas fa-long-arrow-alt-down"></i>
+                </a>
+                <a href="{% url 'products' %}?category={{ active_category }}&sort=-price" class="mx-1 p-1">
+                    <i class="far fa-money-bill-alt"></i><i class="fas fa-long-arrow-alt-up"></i>
+                </a>
+            </div>
         </div>
         <div class="row">
             <div class="product-container col-10 offset-1">
@@ -113,4 +140,13 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block main_postloadjs %}
+{% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+    <!-- Add these values as id on an element so that JS can pick it up and use it in an external script -->
+    <script src="{% static 'products/js/shop.js' %}"></script>
 {% endblock %}

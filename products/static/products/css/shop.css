@@ -18,6 +18,21 @@
     color: #fff;
 }
 
+.sort-section {
+    line-height: 2;
+}
+
+#sort-container a {
+    border: 1px solid var(--color-light-pink);
+    color: var(--color-main);
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+#sort-trigger:hover {
+   cursor: pointer;
+}
+
 @media (max-width:481px){
     .category-button {
         font-size: xx-small;
