@@ -18,6 +18,10 @@
     color: #fff;
 }
 
+.category-button a:hover {
+    color: #fff;
+}
+
 .sort-section {
     line-height: 2;
 }

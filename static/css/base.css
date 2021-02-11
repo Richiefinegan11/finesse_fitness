@@ -51,25 +51,29 @@ html,body
     border: 1px solid #a30202 !important;
 }
 
-.submit-button {
-    background: #a30202;
-    color: white;
-    min-width: 260px;
-}
-
 .btn-red {
     background: #a30202;
     color: white;
 }
 
-.join-now-button:hover,
-.join-now-button:active,
-.join-now-button:focus,
-.btn-black:hover,
-.btn-black:active,
-.btn-black:focus {
-    background: #222;
-    color: white;
+.btn-red:hover {
+    background: #fff;
+    color: #a30202;
+    border: 1px solid #a30202 !important;
+}
+
+.return-button {
+    border: 1px solid #a30202 !important;
+    min-width: 150px;
+    color: #a30202;
+
+}
+
+.return-button:hover {
+    border: 1px solid #fff !important;
+    min-width: 150px;
+    color: #fff !important;
+    background-color: #a30202;
 }
 
 .icon {
