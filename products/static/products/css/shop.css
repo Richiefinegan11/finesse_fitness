@@ -1,0 +1,27 @@
+.category-button {
+    border: 1px solid #a30202 !important;
+    min-width: 150px;
+}
+
+.category-button a {
+    text-decoration: none;
+    color: #a30202;
+}
+
+.category-button:hover {
+    
+    border: 1px solid #fff !important;
+    background-color: #a30202;
+}
+
+.category-button a:hover {
+    color: #fff;
+}
+
+@media (max-width:481px){
+    .category-button {
+        font-size: xx-small;
+        min-width: 100px;
+        margin: 1em;
+    }
+}

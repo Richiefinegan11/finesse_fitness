@@ -49,6 +49,28 @@
                 <hr>
                 <p class="mt-3 text-red">{{ product.description }}</p>
                 <p class="lead mb-0 text-left font-weight-bold text-red">€{{ product.price }}</p>
+                {% if product.gender %}
+                    {% if product.gender == 'Men' %}
+                        <p class="small mt-1 mb-0">
+                            <a class="text-muted text-red" href="{% url 'products' %}?category={{ product.category.name }}">
+                                <i class="fas fa-male"></i> {{ product.gender }}'s
+                            </a>
+                        </p>
+                    {% else %}
+                        <p class="small mt-1 mb-0">
+                            <a class="text-muted text-red" href="{% url 'products' %}?category={{ product.category.name }}">
+                                <i class="fas fa-female"></i> {{ product.gender }}'s
+                            </a>
+                        </p>
+                    {% endif %}
+                {% endif %}
+                {% if product.category %}
+                <p class="small mt-1 mb-0">
+                    <a class="text-muted text-red" href="{% url 'products' %}?category={{ product.category.name }}">
+                        <i class="fas fa-list"></i> {{ product.category.friendly_name }}
+                    </a>
+                </p>
+                {% endif %}
                 {% if product.rating %}
                     <p class="text-muted text-red"><i class="fas fa-star mr-1"> {{ product.rating }}</i> / 5</P>
                 {% else %}

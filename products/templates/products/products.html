@@ -1,7 +1,11 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block extra_title %}Home{% endblock %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'products/css/shop.css' %}">
+{% endblock %}
+
+{% block extra_title %}Shop{% endblock %}
 
 {% block page_header %}
     <div class="container header-container">
@@ -14,7 +18,19 @@
 {% block content %}
     <div class="container-fluid">
             <div class="col text-center mt-3">
-                <h2 class="text-red">Products</h2>
+                <h2 class="text-red pb-2">Products</h2>
+                {% for category in categories %}
+                    <li class="list-inline-item category-button">
+                        <a href="{% url 'products' %}?category={{ category.name }}">
+                            <div class="p-1">{{ category.friendly_name }}</div>
+                        </a>
+                    </li>
+                {% endfor %}
+                <li class="list-inline-item category-button">
+                    <a href="{% url 'products' %}">
+                        <div class="p-1">All</div>
+                    </a>
+                </li>
                 <hr class="w-50 mb-1">
         </div>
         <div class="row">
@@ -40,6 +56,21 @@
                                     <div class="row">
                                         <div class="col">
                                             <p class="lead mb-0 text-left font-weight-bold text-red">€{{ product.price }}</p>
+                                            {% if product.gender %}
+                                                {% if product.gender == 'Men' %}
+                                                    <p class="small mt-1 mb-0">
+                                                        <a class="text-muted text-red" href="{% url 'products' %}?category={{ product.category.name }}">
+                                                            <i class="fas fa-male"></i> {{ product.gender }}'s
+                                                        </a>
+                                                    </p>
+                                                {% else %}
+                                                    <p class="small mt-1 mb-0">
+                                                        <a class="text-muted text-red" href="{% url 'products' %}?category={{ product.category.name }}">
+                                                            <i class="fas fa-female"></i> {{ product.gender }}'s
+                                                        </a>
+                                                    </p>
+                                                {% endif %}
+                                            {% endif %}
                                             {% if product.category %}
                                             <p class="small mt-1 mb-0">
                                                 <a class="text-muted text-red" href="{% url 'products' %}?category={{ product.category.name }}">

@@ -8,29 +8,20 @@ def all_products(request):
     """ A view to show all products, including sorting and search queries """
 
     products = Product.objects.all()
+    categories = Category.objects.all()
     query = None
-    categories = None
-    sort = None
-    direction = None
+    item_category = 'All'
 
     if request.GET:
-        if 'sort' in request.GET:
-            sortkey = request.GET['sort']
-            sort = sortkey
-            if sortkey == 'name':
-                sortkey = 'lower_name'
-                products = products.annotate(lower_name=Lower('name'))
-
-            if 'direction' in request.GET:
-                direction = request.GET['direction']
-                if direction == 'desc':
-                    sortkey = f'-{sortkey}'
-            products = products.order_by(sortkey)
             
         if 'category' in request.GET:
-            categories = request.GET['category'].split(',')
-            products = products.filter(category__name__in=categories)
-            categories = Category.objects.filter(name__in=categories)
+            item_category = request.GET['category']
+            products = products.filter(category__name=item_category)
+            # Sorting functionality for all items and each category
+            if 'sort' in request.GET:
+                sort_by = request.GET['sort']
+                if item_category == 'All':
+                    products = Product.objects.order_by(sort_by)
 
         if 'q' in request.GET:
             query = request.GET['q']
@@ -41,13 +32,11 @@ def all_products(request):
             queries = Q(name__icontains=query) | Q(description__icontains=query)
             products = products.filter(queries)
 
-    current_sorting = f'{sort}_{direction}'
-
     context = {
         'products': products,
         'search_term': query,
-        'current_categories': categories,
-        'current_sorting': current_sorting,
+        'categories': categories,
+        'active_category': item_category,
     }
 
     return render(request, 'products/products.html', context)
