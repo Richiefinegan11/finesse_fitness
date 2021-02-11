@@ -50,7 +50,7 @@
 ## Credits 
 * JS
   * [Stack Overflow](https://stackoverflow.com/questions/10960753/how-to-make-toggle-hidden-by-default)
-  * 
+  * [Stack Overflow](https://stackoverflow.com/questions/10310717/toggle-show-hide-on-click-with-jquery)
 ### Content 
 
 ### Media 
