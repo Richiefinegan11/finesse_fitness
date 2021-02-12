@@ -76,6 +76,12 @@ html,body
     background-color: #a30202;
 }
 
+.btt-link,
+.update-link,
+.remove-item {
+    cursor: pointer;
+}
+
 .icon {
     align-items: center;
     display: inline-flex;
@@ -106,6 +112,7 @@ hr {
 .product-detail {
     padding-bottom: 3rem;
 }
+
 
 /* Media Queries */
 

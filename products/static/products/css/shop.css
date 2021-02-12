@@ -45,10 +45,6 @@
     right: 20px;
 }
 
-.btt-link {
-    cursor: pointer;
-}
-
 @media (max-width:481px){
     .category-button {
         font-size: xx-small;

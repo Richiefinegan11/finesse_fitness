@@ -1,22 +1,3 @@
-// Update quantity on click
-$(".update-link").click(function (e) {
-  var form = $(this).prev(".update-form");
-  form.submit();
-});
-
-// Remove item and reload on click
-$(".remove-item").click(function (e) {
-  var csrfToken = "{{ csrf_token }}";
-  var itemId = $(this).attr("id").split("remove_")[1];
-  var size = $(this).data("size");
-  var url = `/bag/remove/${itemId}`;
-  var data = { csrfmiddlewaretoken: csrfToken, size: size };
-
-  $.post(url, data).done(function () {
-    location.reload();
-  });
-});
-
 // Disable +/- buttons outside 1-99 range
 function handleEnableDisable(itemId) {
   var currentValue = parseInt($(`#id_qty_${itemId}`).val());
