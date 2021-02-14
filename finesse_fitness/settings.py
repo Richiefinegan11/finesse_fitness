@@ -46,6 +46,9 @@ INSTALLED_APPS = [
     'products',
     'bag',
     'checkout',
+    
+    # Other
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -59,6 +62,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'finesse_fitness.urls'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 TEMPLATES = [
     {
@@ -78,6 +83,9 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'bag.contexts.bag_contents',
             ],
+            'builtins': [
+                
+            ]
         },
     },
 ]
