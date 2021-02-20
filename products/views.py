@@ -5,6 +5,7 @@ from django.db.models import Q
 from .models import Category, Product
 from .forms import ProductForm
 
+
 def all_products(request):
     """ A view to show all products, including sorting and search queries """
 
@@ -60,7 +61,7 @@ def product_detail(request, product_id):
 
 
 def add_product(request):
-    """" Add a product to the store """ 
+    """" Add a product to the store """
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
@@ -68,13 +69,38 @@ def add_product(request):
             messages.success(request, 'Your Product has been added!')
             return redirect(reverse('add_product'))
         else:
-            messages.error(request, 'Failed to add product. Please check that form is valid')
+            messages.error(
+                request, 'Failed to add product. Please check that form is valid')
     else:
         form = ProductForm()
-        
+
     template = 'products/add_product.html'
     context = {
         'form': form,
+    }
+
+    return render(request, template, context)
+
+
+def edit_product(request, product_id):
+    """ Edit a product in the store """
+    product = get_object_or_404(Product, pk=product_id)
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Your Product has been updated!')
+            return redirect(reverse('product_detail', args=[product.id]))
+        else:
+            messages.error(request, 'Failed to update product. Please ensure the form is valid.')
+    else:
+        form = ProductForm(instance=product)
+        messages.info(request, f'You are editing {product.name}')
+
+    template = 'products/edit_product.html'
+    context = {
+        'form': form,
+        'product': product,
     }
 
     return render(request, template, context)
