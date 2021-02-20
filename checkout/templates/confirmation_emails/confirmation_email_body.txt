@@ -1,0 +1,30 @@
+Hi {{ order.full_name}}
+
+This is a confirmation to let you know that your order has been
+recieved. We will update you as soon as your order has been dispatched.
+
+Order No: {{ order.order_number }}
+Order Date: {{ order.date }}
+
+Delivery Address:
+{{ order.full_name }}
+{{ order.street_address1 }}
+{{ order.street_address2 }}
+{{ order.town_or_city }}
+{{ order.county }}
+{{ order.country }}
+{{ order.postcode }}
+
+Your order:
+Order QTY  |                Description                 |     Price     |     Total    
+{{ order.qunatity }}
+
+
+
+
+
+If you have any questions, feel free to conact us at {{ conact_email }}
+
+Kind Regards,
+
+Finesse Fitness Team
