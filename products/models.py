@@ -1,5 +1,8 @@
 from django.db import models
 
+# Add for clean method to add custom validation
+from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as _
 
 class Category(models.Model):
 
@@ -29,6 +32,17 @@ class Product(models.Model):
     image_url = models.URLField(max_length=1024, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
 
+
     def __str__(self):
         return self.name
 
+
+    def clean(self):
+        """
+        Show error if the user enters discounts or prices below 0
+        """
+        if self.price and self.price < 0:
+            raise ValidationError(_("Price can't be negative"))
+        elif self.rating and self.rating < 0:
+            raise ValidationError(_("First Order Discount"
+                                    " Value can't be negative"))
