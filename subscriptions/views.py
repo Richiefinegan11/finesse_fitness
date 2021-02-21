@@ -1,5 +1,5 @@
 from django.db import models
-from django.shortcuts import render
+from django.shortcuts import redirect, render, reverse
 from django.conf import settings
 from django.utils.translation import templatize
 
@@ -33,4 +33,21 @@ def subscriptions(request):
                 'subscriptions': subscriptions,
             }
     return render(request, template, context)
+
+
+def subscription_type(request):
+    """
+    Catch the membership type selected by the user, 
+    store it in the session and redirect the user to signup
+    """
+
+    subscription_type = request.POST.get('subcription_type')
+    request.session['subscription'] = subscription_type
+    if request.user.is_authenticated:
+        return redirect(reverse('subscription_checkout'))
+
+    return redirect(reverse('account_signup'))
+
+
+
 

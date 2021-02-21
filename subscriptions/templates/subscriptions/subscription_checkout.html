@@ -6,7 +6,7 @@
 {% endblock %}
 
 
-{% block extra_title %}Subscriptions{% endblock %}
+{% block extra_title %}Subscriptions Checkout{% endblock %}
 
 {% block page_header %}
     <div class="container header-container">
@@ -22,7 +22,7 @@
     <div class="row">
         <div class="col">
             <hr>
-            <h2 class="logo-font mb-4 text-red">Subscriptions</h2>
+            <h2 class="logo-font mb-4 text-red">Subscription Checkout</h2>
             <hr>
         </div>
     </div>
@@ -66,7 +66,7 @@
             </div>
             <!-- Price, display free if None -->
             <div>
-                <h5 class="fs-4 mt-4 text-red">
+                <h5 class="fs-4 text-red">
                     {% if subscription.price %}
                         €{{ subscription.price }} / Year
                     {% else %}
@@ -74,24 +74,6 @@
                     {% endif %}
                 </h5>
             </div>
-            <!-- Form that posts the name of the memebrship that is stored as a session variable and retrieved after signup -->
-            {% if request.user.is_authenticated and user_subscription %}
-                <form action="" method="POST" class="pt-4 pb-3">
-                    {% csrf_token %}
-                    <input type="hidden" value="{{ subscription.name }}" name="subscription_type">
-                    {% if subscription.subscription_level == user_subscription %}
-                        <button class="btn btn-red" disabled>Subscribed</button>
-                    {% else %}
-                        <button class="btn return-button">Change</button>
-                    {% endif %}
-                </form>
-            {% else %}
-                <form action="{% url 'subscription_type' %}" method="POST" class="pt-4 pb-3">
-                    {% csrf_token %}
-                    <input type="hidden" value="{{ subscription.name }}" name="subscription_type">
-                    <button class="btn btn-red">Subscribe</button>
-                </form>
-            {% endif %}
         </div>
         {% endfor %}
     </div>
