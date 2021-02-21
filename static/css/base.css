@@ -37,6 +37,10 @@ html,body
     color: #a30202 !important;
 }
 
+.text-black {
+    color: #000;
+}
+
 .strokeme-red {
     color: #a30202;
     text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;

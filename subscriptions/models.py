@@ -19,6 +19,15 @@ class Subscription(models.Model):
         (bronze, 'bronze'),
     ]
 
+    three = '3 Month Plan'
+    six = '6 Month Plan'
+    twelve = '12 Month Plan'
+    meals = [
+        (three, '3 Month Plan'),
+        (six, '6 Month Plan'),
+        (twelve, '12 Month Plan')
+    ]
+
     yes = 'yes'
     no = 'no'
         
@@ -36,6 +45,7 @@ class Subscription(models.Model):
     image = models.ImageField('Subscription Picture', null=True, blank=True)
     price = models.DecimalField(max_digits=5, decimal_places=2)
     priority = models.CharField(max_length=10, choices=access)
+    meal_plan = models.CharField(max_length=20, choices=meals, default=three)
     first_order_discount=models.IntegerField('First Order Discount', default=0)
     shop_discount = models.IntegerField(default=0)
     free_delivery = models.CharField(max_length=3, choices=foc_delivery, default=no)

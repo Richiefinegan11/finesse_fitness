@@ -18,21 +18,62 @@
 
 {% block content %}
 <!-- Subscription Container -->
-<div class="container-fluid text-center text-red">
+<div class="container-fluid text-center">
     <div class="row">
         <div class="col">
             <hr>
-            <h2 class="logo-font mb-4">Subscriptions</h2>
+            <h2 class="logo-font mb-4 text-red">Subscriptions</h2>
             <hr>
         </div>
     </div>
-    <div class="row">
+    <div class="row mb-5 pt-5">
         {% for subscription in subscriptions %}
-        <div class="col-12 col-lg-4 {% if subscription.subscription_level == user_membership %}border{% endif %}">
+        <div class="col-12 col-lg-4 mb-5 mb-md-0 {% if subscription.subscription_level == user_membership %}border{% endif %}">
             <!-- Subscription Name -->
-            <h5 class="text-uppercase">{{ subscription.subscription_level }} Subscription</h5>
+            <h4 class="text-uppercase text-red">{{ subscription.subscription_level }} Subscription</h4>
             <!-- Subscription Icon -->
-                <h2 class=""><i class="fas fa-certificate {% if subscription.priority == 'gold' %} badge-gold {% elif subscription.priority == 'silver' %} badge-silver {% else %} badge-bronze {% endif %} "></i></h2>
+            <h2 class=""><i class="fas fa-certificate {% if subscription.priority == 'gold' %} badge-gold {% elif subscription.priority == 'silver' %} badge-silver {% else %} badge-bronze {% endif %} "></i></h2>
+            <!-- Free delivery per subscription -->            
+            <div>
+                <h6 class="mt-4 mb-0">Free Delivery</h6>
+                {% if subscription.free_delivery == 'yes' %}
+                    <p class="text-red">Yes</p>
+                {% else%}
+                    <p class="text-secondary">No</p>
+                {% endif %}
+            </div>
+            <!-- Discount for first order -->
+            <div>
+                <h6 class="mt-4 mb-0">First Order Discount</h6>
+                <p class="text-red">{{ subscription.first_order_discount }}%</p>
+            </div>
+            <!-- Shop Discount -->
+            <div>
+                <h6 class="mt-4 mb-0">Shop Discount</h6>
+                <p class="text-red">{{ subscription.shop_discount }}%</p>                
+            </div>
+            <!-- Meal Plan -->
+            <div>
+                <h6 class="mt-4 mb-0">Nutrition</h6>
+                <p class="text-red">{{ subscription.meal_plan }}</p>      
+            </div>
+            <!-- Meal Plan -->
+            <div>
+                <h6 class="mt-4 mb-0">Blog Access</h6>
+                {% if subscription.blog == 'yes' %}
+                    <p class="text-red">Yes</p>    
+                {% endif %} 
+            </div>
+            <!-- Price, display free if None -->
+            <div>
+                <p class="fs-4 text-red">
+                    {% if subscription.price %}
+                        €{{ subscription.price }} / Year
+                    {% else %}
+                        free
+                    {% endif %}
+                </p>
+            </div>
         </div>
         {% endfor %}
     </div>
