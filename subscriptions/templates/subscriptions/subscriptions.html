@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'subscriptions/css/subscriptions.css' %}">
+{% endblock %}
+
+
+{% block extra_title %}Subscriptions{% endblock %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+<!-- Subscription Container -->
+<div class="container-fluid text-center text-red">
+    <div class="row">
+        <div class="col">
+            <hr>
+            <h2 class="logo-font mb-4">Subscriptions</h2>
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+        {% for subscription in subscriptions %}
+        <div class="col-12 col-lg-4 {% if subscription.subscription_level == user_membership %}border{% endif %}">
+            <!-- Subscription Name -->
+            <h5 class="text-uppercase">{{ subscription.subscription_level }} Subscription</h5>
+            <!-- Subscription Icon -->
+                <h2 class=""><i class="fas fa-certificate {% if subscription.priority == 'gold' %} badge-gold {% elif subscription.priority == 'silver' %} badge-silver {% else %} badge-bronze {% endif %} "></i></h2>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+    <!-- Add these values as id on an element so that JS can pick it up and use it in an external script -->
+    <script src="{% static 'products/js/shop.js' %}"></script>
+{% endblock %}
