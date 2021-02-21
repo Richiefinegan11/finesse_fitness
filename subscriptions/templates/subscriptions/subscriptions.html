@@ -74,11 +74,11 @@
                     {% endif %}
                 </h5>
             </div>
-            <!-- Form that posts the name of the memebrship that is stored as a session variable and retrieved after signup -->
+            <!-- Form that posts the name of the subscription that is stored as a session variable and retrieved after signup -->
             {% if request.user.is_authenticated and user_subscription %}
-                <form action="" method="POST" class="pt-4 pb-3">
+                <form action="{% url 'subscription_change' %}" method="POST" class="pt-4 pb-3">
                     {% csrf_token %}
-                    <input type="hidden" value="{{ subscription.name }}" name="subscription_type">
+                    <input type="hidden" value="{{ subscription.subscription_level }}" name="subscription_type">
                     {% if subscription.subscription_level == user_subscription %}
                         <button class="btn btn-red" disabled>Subscribed</button>
                     {% else %}
@@ -88,7 +88,7 @@
             {% else %}
                 <form action="{% url 'subscription_type' %}" method="POST" class="pt-4 pb-3">
                     {% csrf_token %}
-                    <input type="hidden" value="{{ subscription.name }}" name="subscription_type">
+                    <input type="hidden" value="{{ subscription.subscription_level }}" name="subscription_type">
                     <button class="btn btn-red">Subscribe</button>
                 </form>
             {% endif %}
