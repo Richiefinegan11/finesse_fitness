@@ -89,7 +89,7 @@ def subscription_checkout(request):
             return redirect(reverse('profile'))
 
     # Retrieve data for selected subscription type
-    subscription = get_object_or_404(Subscription, name=subscription_type)
+    subscription = get_object_or_404(Subscription, subscription_level=subscription_type)
 
     template = 'subscriptions/subscription_checkout.html'
     context = {
