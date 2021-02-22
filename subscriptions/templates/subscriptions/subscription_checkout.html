@@ -1,30 +1,110 @@
-{% extends "base.html" %}
-{% load static %}
+{% extends "base.html" %} 
+{% load static %} 
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'subscriptions/css/subscriptions.css' %}">
-{% endblock %}
-
+<link
+  rel="stylesheet"
+  href="{% static 'subscriptions/css/subscriptions.css' %}"
+/>
+{% endblock %} 
 
 {% block extra_title %}Subscriptions Checkout{% endblock %}
 
 {% block page_header %}
-    <div class="container header-container">
-        <div class="row">
-            <div class="col"></div>
-        </div>
-    </div>
-{% endblock %}
+<div class="container header-container">
+  <div class="row">
+    <div class="col"></div>
+  </div>
+</div>
+{% endblock %} 
 
 {% block content %}
-<!-- Subscription Container -->
-<div class="container-fluid text-center">
-    <div class="row">
-        <div class="col">
-            <hr>
-            <h2 class="logo-font mb-4 text-red">Subscription Checkout</h2>
-            <hr>
+    <!-- Subscription-Checkout Container -->
+    <div class="container-fluid text-center">
+        <div class="row">
+            <div class="col">
+                <hr>
+                <h2 class="logo-font mb-4 text-red">Subscription Checkout</h2>
+                <hr>
+            </div>
         </div>
-        <h3>
+        <div class="row">
+            <div class="col">
+                <h3>You've chose {{ subscription.subscription_level }} subscription</h3>
+            </div>
+        </div>
+        <!-- Subscription Benefits -->
+        <div class="row">
+            {% if change_subscription %}
+            <div class="col-12 col-md-6 m-auto p3 text-center">
+                <h4 class="text-uppercase">Current</h4>
+                <!-- If subscription offers free delivery -->
+                <div>
+                    {% if subscription.free_delivery == 'yes' %}
+                        <p class="text-danger">Yes</p>
+                    {% else %}
+                        <p class="text-secondary">No</p>
+                    {% endif %}
+                </div>
+                <!-- Discount for first order -->
+                <div>
+                    <p class="mb-0">First Order Discount</p>
+                    <p class="text-danger">{{ subscription.first_order_discount }}%</p>
+                </div>
+                <!-- Shop Discount -->
+                <div>
+                    <p class="mb-0">Overall Discount</p>
+                        {% if subscription.shop_discount %}
+                            <p class="text-danger">{{ subscription.shop_discount }}%</p>
+                        {% else %}
+                            <p class="text-secondary">Nope</p>
+                        {% endif %}
+                    </p>
+                </div>
+                <!-- Meal Plan -->
+                <div>
+                    <h6 class="mt-4 mb-0">Nutrition</h6>
+                    <p class="text-red">{{ subscription.meal_plan }}</p>      
+                </div>
+                
+                <div>
+                    <h6 class="mt-4 mb-0">Blog Access</h6>
+                    {% if subscription.blog == 'yes' %}
+                        <p class="text-red">Yes</p>    
+                    {% endif %} 
+                </div>
+                <!-- Price, display free if None -->
+                <div>
+                    <h5 class="fs-4 mt-4 text-red">
+                        {% if subscription.price %}
+                            €{{ subscription.price }} / Year
+                        {% else %}
+                            free
+                        {% endif %}
+                    </h5>
+                </div>
+            </div>
+        </div>
+        {% if not change_subscription %}
+        <!-- Allow user to change the selected subscription before payment  -->
+        <div class="row mt-5">
+            <div class="col-12 col-md-6 m-auto border p-3">
+                <h4 class="text-uppercase">Change</h4>
+                <!-- Form contains subscription types -->
+                <form action="{% url 'subscription_checkout' %}" method="GET" class="text-center">
+                    <select class="form-select" aria-label="Default select example" name="subscription-new">
+                        <!-- Loop through subscription types, display selected subscription -->
+                        {% for s in all_subscription %}
+                            {% if s.subscription_level == subscription.subscription_level %}
+                                <option selected value="{{ s.subscription_level }}">{{ s.subscription_level}}</option>
+                            {% else %}
+                                <option value="{{ s.subscription_level }}">{{ s.subscription_level }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                    <button class="text-upppercase btn btn-sm btn-outline-secondary rounded-0 mt-3">Update</button>
+                </form>                     
+            </div> 
+        </div>     
     </div>
 {% endblock %}
