@@ -28,9 +28,9 @@
     </div>
     <div class="row mb-5 pt-5">
         {% for subscription in subscriptions %}
-        <div class="col-12 col-lg-4 mb-5 mb-md-0 {% if subscription.subscription_level == user_membership %}border{% endif %}">
+        <div class="col-12 col-lg-4 mb-5 mb-md-0 {% if subscription.name == user_membership %}border{% endif %}">
             <!-- Subscription Name -->
-            <h4 class="text-uppercase text-red">{{ subscription.subscription_level }} Subscription</h4>
+            <h4 class="text-uppercase text-red">{{ subscription.name }} Subscription</h4>
             <!-- Subscription Icon -->
             <h2 class=""><i class="fas fa-certificate {% if subscription.priority == 'gold' %} badge-gold {% elif subscription.priority == 'silver' %} badge-silver {% else %} badge-bronze {% endif %} "></i></h2>
             <!-- Free delivery per subscription -->            
@@ -78,8 +78,8 @@
             {% if request.user.is_authenticated and user_subscription %}
                 <form action="{% url 'subscription_change' %}" method="POST" class="pt-4 pb-3">
                     {% csrf_token %}
-                    <input type="hidden" value="{{ subscription.subscription_level }}" name="subscription_type">
-                    {% if subscription.subscription_level == user_subscription %}
+                    <input type="hidden" value="{{ subscription.name }}" name="subscription_type">
+                    {% if subscription.subscription_name == user_subscription %}
                         <button class="btn btn-red" disabled>Subscribed</button>
                     {% else %}
                         <button class="btn return-button">Change</button>
@@ -88,7 +88,7 @@
             {% else %}
                 <form action="{% url 'subscription_type' %}" method="POST" class="pt-4 pb-3">
                     {% csrf_token %}
-                    <input type="hidden" value="{{ subscription.subscription_level }}" name="subscription_type">
+                    <input type="hidden" value="{{ subscription.name }}" name="subscription_type">
                     <button class="btn btn-red">Subscribe</button>
                 </form>
             {% endif %}

@@ -15,7 +15,7 @@ class UserProfile(models.Model):
     """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     subscription = models.ForeignKey(Subscription, on_delete=models.CASCADE,
-                                   null=True, blank=True)
+                                   null=True, blank=True, related_name='subscriptions')
     user_full_name = models.CharField(max_length=50, null=True, blank=True)
     user_email = models.EmailField(max_length=254, null=True, blank=True)
     user_phone_number = models.CharField(max_length=20, null=True, blank=True)
@@ -29,7 +29,7 @@ class UserProfile(models.Model):
     user_country = CountryField(blank_label='Country', null=True, blank=True)
 
     def __str__(self):
-        return self.user_username
+        return self.user.username
 
 
 @receiver(post_save, sender=User)

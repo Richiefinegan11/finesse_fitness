@@ -40,8 +40,8 @@ class Subscription(models.Model):
         (no, 'no'),
         (yes, 'yes'),
     ]
-
-    subscription_level = models.CharField(max_length=10)
+    
+    name = models.CharField(max_length=10)
     image = models.ImageField('Subscription Picture', null=True, blank=True)
     price = models.DecimalField(max_digits=5, decimal_places=2)
     priority = models.CharField(max_length=10, choices=access)
@@ -52,7 +52,7 @@ class Subscription(models.Model):
     blog = models.CharField(max_length=3, choices=blog_access)
 
     def __str__(self):
-        return self.subscription_level
+        return self.name
 
 
     def clean(self):

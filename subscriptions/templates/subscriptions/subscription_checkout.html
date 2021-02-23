@@ -30,7 +30,7 @@
         </div>
         <div class="row">
             <div class="col">
-                <h3>You've chose {{ subscription.subscription_level }} subscription</h3>
+                <h3>You've chose {{ subscription.name }} subscription</h3>
             </div>
         </div>
         <!-- Subscription Benefits -->
@@ -40,6 +40,7 @@
                 <h4 class="text-uppercase">Current</h4>
                 <!-- If subscription offers free delivery -->
                 <div>
+                    <p class="mb-0">Free Delivery</p>
                     {% if subscription.free_delivery == 'yes' %}
                         <p class="text-danger">Yes</p>
                     {% else %}
@@ -84,6 +85,7 @@
                     </h5>
                 </div>
             </div>
+            {% endif %}
         </div>
         {% if not change_subscription %}
         <!-- Allow user to change the selected subscription before payment  -->
@@ -95,16 +97,17 @@
                     <select class="form-select" aria-label="Default select example" name="subscription-new">
                         <!-- Loop through subscription types, display selected subscription -->
                         {% for s in all_subscription %}
-                            {% if s.subscription_level == subscription.subscription_level %}
-                                <option selected value="{{ s.subscription_level }}">{{ s.subscription_level}}</option>
+                            {% if s.name == subscription.name %}
+                                <option selected value="{{ s.name }}">{{ s.name}}</option>
                             {% else %}
-                                <option value="{{ s.subscription_level }}">{{ s.subscription_level }}</option>
+                                <option value="{{ s.name }}">{{ s.name }}</option>
                             {% endif %}
                         {% endfor %}
                     </select>
                     <button class="text-upppercase btn btn-sm btn-outline-secondary rounded-0 mt-3">Update</button>
                 </form>                     
             </div> 
-        </div>     
+        </div>
+        {% endif %} 
     </div>
 {% endblock %}

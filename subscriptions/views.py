@@ -20,7 +20,6 @@ def subscriptions(request):
     """
 
     # Get the subscription entries
-
     subscriptions = Subscription.objects.all()
     template = 'subscriptions/subscriptions.html'
     if request.user.is_anonymous:
@@ -30,7 +29,7 @@ def subscriptions(request):
     else:
         profile = UserProfile.objects.get(user=request.user)
         if profile.subscription:
-            user_subscription = profile.subscription.subscription_level
+            user_subscription = profile.subscription.name
             context = {
                 'user_subscription': user_subscription,
                 'subscriptions': subscriptions,
@@ -82,14 +81,15 @@ def subscription_checkout(request):
     else:
         try:
             # get user selected subscription
-            subscription_type = request.session['subscription']
+            subscription_type = request.session['subscription_type']
         except KeyError:
             # If user logged in normally, redirect them
             # to the profile page
-            return redirect(reverse('profile'))
+            return redirect(reverse('products'))
     
     # Retrieve data for selected subscription type
-    subscription = get_object_or_404(Subscription, subscription_level=subscription_type)
+    print(f'subject_type = {subscription_type}')
+    subscription = get_object_or_404(Subscription, name=subscription_type)
 
     template = 'subscriptions/subscription_checkout.html'
     context = {
@@ -99,3 +99,29 @@ def subscription_checkout(request):
 
     return render(request, template, context)
 
+
+@login_required
+def subscription_change(request):
+    """
+    Handles subscription change and adding selected subscription
+    to the session
+    """
+    profile = UserProfile.objects.get(user=request.user)
+    if not profile.subscription:
+        return redirect(reverse('subscriptions'))
+
+    if not request.POST.get('subscription_type'):
+        return redirect(reverse('subscriptions'))
+
+    all_subscriptions = Subscription.objects.all()
+    subscription_type = request.POST.get('subscription_type')
+    request.session['subscription'] = subscription_type
+    subscription = get_object_or_404(Subscription, name=subscription_type)
+    template = 'subscriptions/subscription_checkout.html'
+
+    context = {
+        'change_subscription': True,
+        'subscription': subscription,
+        'all_subscriptions': all_subscriptions,
+    }
+    return render(request, template, context)

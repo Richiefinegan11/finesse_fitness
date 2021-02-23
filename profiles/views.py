@@ -1,6 +1,6 @@
 from django.db import models
 from subscriptions.views import subscriptions
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
 from subscriptions.models import Subscription
 from django.contrib.auth.decorators import login_required
@@ -14,7 +14,7 @@ def profile(request):
     """ Display the user's profile. """
     profile = get_object_or_404(UserProfile, user=request.user)
 
-    subscriptions = get_object_or_404(Subscription, name=profile.user)
+    subscription = get_object_or_404(Subscription, name=profile.user)
 
     if request.method == 'POST':
         form = UserProfileForm(request.POST, instance=profile)
@@ -32,7 +32,7 @@ def profile(request):
         'form': form,
         'orders': orders,
         'on_profile_page': True,
-        'subscriptions': subscriptions,
+        'subscription': subscription,
     }
 
     return render(request, template, context)
