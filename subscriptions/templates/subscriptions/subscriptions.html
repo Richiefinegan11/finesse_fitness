@@ -79,7 +79,7 @@
                 <form action="{% url 'subscription_change' %}" method="POST" class="pt-4 pb-3">
                     {% csrf_token %}
                     <input type="hidden" value="{{ subscription.name }}" name="subscription_type">
-                    {% if subscription.subscription_name == user_subscription %}
+                    {% if subscription.name == user_subscription %}
                         <button class="btn btn-red" disabled>Subscribed</button>
                     {% else %}
                         <button class="btn return-button">Change</button>

@@ -150,54 +150,21 @@ def subscription_change(request):
 @login_required
 def subscription_update(request):
     """
-    Update user's subscription in the stripe system
-    and our database too
+    Get chosen subscription from session and save it to the users profile
     """
 
     if not UserProfile.objects.get(user=request.user).subscription:
         return redirect(reverse('subscriptions'))
 
-    stripe.api_key = settings.STRIPE_SECRET_KEY
     # user's chosen subscription
     subscription = request.session['subscription']
 
-    # Asign correct price keys to the paid subscriptions
-    if subscription == 'Gold':
-        price = settings.STRIPE_PRICE_ID_GOLD
-    elif subscription == 'Silver':
-        price = settings.STRIPE_PRICE_ID_SILVER
-    else:
-        price = settings.STRIPE_PRICE_ID_BRONZE
-
-    # Check if the user already exists in stripe system and
-    # our database
-    try:
-        stripe_customer = StripeCustomer.objects.get(user=request.user)
-        subscription = stripe.Subscription.retrieve(
-            stripe_customer.stripeSubscriptionId)
-        # Update existing subscription with a new one
-        stripe.Subscription.modify(
-            subscription.id,
-            cancel_at_period_end=False,
-            proration_behavior='create_prorations',
-            items=[{
-                'id': subscription['items']['data'][0].id,
-                'price': price,
-            }]
-        )
-
-        # Attach new subscription to the user's profile
+    # Attach new subscription to the user's profile
+    if request.method == 'POST':
         subscription_type = get_object_or_404(Subscription, name=subscription)
         profile = get_object_or_404(UserProfile, user=request.user)
         profile.subscription = subscription_type
         profile.save()
+        messages.success(request, 'Successfully Subscribed!')
 
-        messages.success(request, 'Congrats!! You successfully changed'
-                                  ' your subscription to the '
-                                  f'{subscription} subscription!')
-        # Redirect the user to profiles page
-        return redirect(reverse('profile'))
-
-    # If user doesn't exist, return error
-    except StripeCustomer.DoesNotExist:
-        return messages.error(request, 'User does not exist')
+    return render(request)

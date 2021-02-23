@@ -7,9 +7,9 @@
   href="{% static 'subscriptions/css/subscriptions.css' %}"
 />
 {% endblock %}
-    <script type="text/javascript" src="{% static 'subscriptions/js/stripe_sub.js' %}"></script>
+    
 {% block extra_js %}
-
+    <script type="text/javascript" src="{% static 'subscriptions/js/stripe_sub.js' %}"></script>
 {% endblock %}
 
 {% block extra_title %}Subscriptions Checkout{% endblock %}
@@ -115,31 +115,31 @@
         {% endif %} 
 
             <!-- Payment container -->
-    <div class="row mt-5">
+        <div class="row mt-5">
         <div class="col-12 col-md-6 m-auto border p-3 text-center">
             <h4 class="text-uppercase">Payment</h4>
             <p>Total due now: <span class="fs-5">€ {{ subscription.price }}<sup>*</sup></span></p>
-            <!-- If user is changing mebership, process it through subscription_update view -->
+            <!-- If user is changing subscription, process it through subscription_update view -->
             {% if change_subscription %}
-                <p class="text-danger">This will cancel your current membership and subscribe you to the {{ membership.name }} plan.</p>
+                <p class="text-danger">This will cancel your current subscription and subscribe you to the {{ subscription.name }} plan.</p>
                 <div>
                     <a class="button button-steel" href="{% url 'products' %}">Cancel</a>
                     <a href="{% url 'subscription_update' %}" class="btn btn-red">Confirm</a>
                 </div>
             <!-- If user has selected other subscriptions as his first subscription, re-direct to the checkout page -->
             {% else %}
-                <div class="text-center my-3">
-                    <button type="submit" class="btn btn-red" id="submitBtn">Confirm</button>
-                </div>
+            <form action="{% url 'subscription_update' %}" method="POST" class="pt-4 pb-3">
+                {% csrf_token %}
+                <input type="hidden" value="{{ subscription.name }}" name="'subscription_confirm'">
+                <button class="btn btn-red">Confirm</button>
+            </form>
             {% endif %}
             <!-- If user4 has selected Basic subscription, let them know that the card won't be charged at all -->
-            {% if subscription.name == 'Basic' and not change_subscription %}
-                <p class="text-end mb-0"><sup>*</sup><small>We need your card details but your card won't be charged</small></p>
-            {% elif subscription.price > 0 %}
+            {% if subscription.name %}
                 <p class="text-end mb-0"><sup>*</sup><small>This amount will be charged on your card yearly</small></p>
             {% endif %}
         </div>
     </div>
-</div>
+    </div>
     </div>
 {% endblock %}
