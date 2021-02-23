@@ -42,7 +42,6 @@ class Subscription(models.Model):
     ]
     
     name = models.CharField(max_length=10)
-    image = models.ImageField('Subscription Picture', null=True, blank=True)
     price = models.DecimalField(max_digits=5, decimal_places=2)
     priority = models.CharField(max_length=10, choices=access)
     meal_plan = models.CharField(max_length=20, choices=meals, default=three)
