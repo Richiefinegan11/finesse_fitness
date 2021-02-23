@@ -8,4 +8,6 @@ urlpatterns = [
          name='subscription_checkout'),
     path('subscription_change/', views.subscription_change,
          name="subscription_change"),
+    path('user_subscription/', views.user_subscription_view,
+         name="user_subscription"),
 ]

@@ -14,7 +14,11 @@ def profile(request):
     """ Display the user's profile. """
     profile = get_object_or_404(UserProfile, user=request.user)
 
-    subscription = get_object_or_404(Subscription, name=profile.user)
+    # if not profile.subscription:
+    #     messages.error(request, "You haven't subscribed to a subscription yet. ")
+    #     return redirect(reverse('subscriptions'))
+
+    subscription = get_object_or_404(Subscription, name=profile.subscription)
 
     if request.method == 'POST':
         form = UserProfileForm(request.POST, instance=profile)
