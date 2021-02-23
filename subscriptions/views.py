@@ -166,5 +166,5 @@ def subscription_update(request):
         profile.subscription = subscription_type
         profile.save()
         messages.success(request, 'Successfully Subscribed!')
-
-    return render(request)
+    
+    return redirect(reverse('profile'))
