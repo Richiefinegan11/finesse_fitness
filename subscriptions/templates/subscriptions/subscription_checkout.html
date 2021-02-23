@@ -7,10 +7,6 @@
   href="{% static 'subscriptions/css/subscriptions.css' %}"
 />
 {% endblock %}
-    
-{% block extra_js %}
-    <script type="text/javascript" src="{% static 'subscriptions/js/stripe_sub.js' %}"></script>
-{% endblock %}
 
 {% block extra_title %}Subscriptions Checkout{% endblock %}
 
@@ -34,33 +30,32 @@
         </div>
         <div class="row">
             <div class="col">
-                <h3>You've chose {{ subscription.name }} subscription</h3>
+                <h3 class="mt-3 text-red">{{ subscription.name }} subscription</h3>
             </div>
         </div>
         <!-- Subscription Benefits -->
         <div class="row">
             {% if change_subscription %}
-            <div class="col-12 col-md-6 m-auto p3 text-center">
-                <h4 class="text-uppercase">Current</h4>
+            <div class="col-12 col-md-6 m-auto p3 text-center border-sub">
                 <!-- If subscription offers free delivery -->
                 <div>
-                    <p class="mb-0">Free Delivery</p>
+                    <p class="mb-0 mt-3">Free Delivery</p>
                     {% if subscription.free_delivery == 'yes' %}
-                        <p class="text-danger">Yes</p>
+                        <p class="text-red">Yes</p>
                     {% else %}
                         <p class="text-secondary">No</p>
                     {% endif %}
                 </div>
                 <!-- Discount for first order -->
                 <div>
-                    <p class="mb-0">First Order Discount</p>
-                    <p class="text-danger">{{ subscription.first_order_discount }}%</p>
+                    <p class="mb-0 mt-3">First Order Discount</p>
+                    <p class="text-red">{{ subscription.first_order_discount }}%</p>
                 </div>
                 <!-- Shop Discount -->
                 <div>
-                    <p class="mb-0">Overall Discount</p>
+                    <p class="mb-0 mt-3">Overall Discount</p>
                         {% if subscription.shop_discount %}
-                            <p class="text-danger">{{ subscription.shop_discount }}%</p>
+                            <p class="text-red">{{ subscription.shop_discount }}%</p>
                         {% else %}
                             <p class="text-secondary">Nope</p>
                         {% endif %}
@@ -94,7 +89,7 @@
         {% if not change_subscription %}
         <!-- Allow user to change the selected subscription before payment  -->
         <div class="row mt-5">
-            <div class="col-12 col-md-6 m-auto border p-3">
+            <div class="col-12 col-md-6 m-auto border-sub p-3">
                 <h4 class="text-uppercase">Change</h4>
                 <!-- Form contains subscription types -->
                 <form action="{% url 'subscription_checkout' %}" method="GET" class="text-center">
@@ -116,30 +111,26 @@
 
             <!-- Payment container -->
         <div class="row mt-5">
-        <div class="col-12 col-md-6 m-auto border p-3 text-center">
+        <div class="col-12 col-md-6 m-auto border-sub p-3 text-center">
             <h4 class="text-uppercase">Payment</h4>
             <p>Total due now: <span class="fs-5">€ {{ subscription.price }}<sup>*</sup></span></p>
             <!-- If user is changing subscription, process it through subscription_update view -->
             {% if change_subscription %}
                 <p class="text-danger">This will cancel your current subscription and subscribe you to the {{ subscription.name }} plan.</p>
                 <div>
-                    <a class="button button-steel" href="{% url 'products' %}">Cancel</a>
+                    <a class="btn return-button" href="{% url 'products' %}">Cancel</a>
                     <a href="{% url 'subscription_update' %}" class="btn btn-red">Confirm</a>
                 </div>
             <!-- If user has selected other subscriptions as his first subscription, re-direct to the checkout page -->
             {% else %}
             <form action="{% url 'subscription_update' %}" method="POST" class="pt-4 pb-3">
                 {% csrf_token %}
-                <input type="hidden" value="{{ subscription.name }}" name="'subscription_confirm'">
+                <input type="hidden" value="{{ subscription.name }}" name="subscription-add">
                 <button class="btn btn-red">Confirm</button>
             </form>
             {% endif %}
             <!-- If user4 has selected Basic subscription, let them know that the card won't be charged at all -->
-            {% if subscription.name %}
                 <p class="text-end mb-0"><sup>*</sup><small>This amount will be charged on your card yearly</small></p>
-            {% endif %}
         </div>
-    </div>
-    </div>
     </div>
 {% endblock %}

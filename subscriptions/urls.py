@@ -12,4 +12,5 @@ urlpatterns = [
          name="user_subscription"),
     path('subscription_update/', views.subscription_update,
          name="subscription_update"),
+
 ]

@@ -9,3 +9,8 @@
 .badge-bronze {
     color: #b08d57;
 }
+
+.border-sub {
+    border: 3px solid #a30202 !important;
+    
+}

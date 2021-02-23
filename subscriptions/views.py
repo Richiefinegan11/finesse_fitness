@@ -1,3 +1,4 @@
+from django.contrib.messages.api import success
 import stripe
 
 from django.conf import settings
@@ -43,7 +44,7 @@ def subscriptions(request):
 
 def subscription_type(request):
     """
-    Catch the subscription type selected by the user, 
+    Catch the subscription type selected by the user,
     store it in the session and redirect the user to signup
     """
 
@@ -63,7 +64,8 @@ def user_subscription_view(request):
     profile = UserProfile.objects.get(user=request.user)
 
     if not profile.subscription:
-        messages.error(request, "You haven't subscribed to a subscription yet.")
+        messages.error(
+            request, "You haven't subscribed to a subscription yet.")
         return redirect(reverse('subscriptions'))
 
     subscription = get_object_or_404(Subscription, name=profile.subscription)
@@ -84,7 +86,7 @@ def subscription_checkout(request):
 
     # Get all subscriptions
     all_subscriptions = Subscription.objects.all()
-    
+
     # Check if the user has a subscription, if not re-direct to
     # subscription change
     profile = UserProfile.objects.get(user=request.user)
@@ -103,11 +105,12 @@ def subscription_checkout(request):
             # get user selected subscription
             subscription_type = request.session['subscription']
             request.session['subscription'] = subscription_type
+
         except KeyError:
             # If user logged in normally, redirect them
             # to the profile page
             return redirect(reverse('products'))
-    
+
     # Retrieve data for selected subscription type
     subscription = get_object_or_404(Subscription, name=subscription_type)
     
@@ -160,11 +163,11 @@ def subscription_update(request):
     subscription = request.session['subscription']
 
     # Attach new subscription to the user's profile
-    if request.method == 'POST':
-        subscription_type = get_object_or_404(Subscription, name=subscription)
-        profile = get_object_or_404(UserProfile, user=request.user)
-        profile.subscription = subscription_type
-        profile.save()
-        messages.success(request, 'Successfully Subscribed!')
-    
+
+    subscription_type = get_object_or_404(Subscription, name=subscription)
+    profile = get_object_or_404(UserProfile, user=request.user)
+    profile.subscription = subscription_type
+    profile.save()
+    messages.success(request, 'Successfully Subscribed!')
+
     return redirect(reverse('profile'))

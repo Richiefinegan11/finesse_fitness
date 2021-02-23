@@ -73,11 +73,13 @@
                 </div>
             </div>
         </div>
+        <hr>
         <div class="row">
-            <div class="col-12 col-sm-8 col-md-6 col-xl-4 mx-auto border p-3 mb-5">
-                <h4 class="text-uppercase mb-3">Your Subscription</h4>
-                    <p>'The {{ subscription }} subscription' - € {{ subscription }}/pm</p>
-                <a href="{% url 'user_subscription' %}" class="button button-pink">More</a>
+            <div class="col-12 col-sm-12 col-md-12 border p-3 mt-5 mb-5 text-center">
+                <h4 class="text-uppercase mb-3 text-red">Your Subscription</h4>
+                    <p>'The {{ subscription }} subscription' - €{{ subscription.price }}/ per year</p>
+                    <p> Shop now to get {{ subscription.shop_discount }}% off all your shop orders </p>
+                    <p><a href="{% url 'products' %}" class="btn btn-red">Shop Now!</a></p>
             </div>
         </div>
 {% endblock %}

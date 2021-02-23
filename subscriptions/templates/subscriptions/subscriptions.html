@@ -28,7 +28,7 @@
     </div>
     <div class="row mb-5 pt-5">
         {% for subscription in subscriptions %}
-        <div class="col-12 col-lg-4 mb-5 mb-md-0 {% if subscription.name == user_membership %}border{% endif %}">
+        <div class="col-12 col-lg-4 mb-5 mb-md-0 {% if subscription.name == user_subscription %}border-sub{% endif %}">
             <!-- Subscription Name -->
             <h4 class="text-uppercase text-red">{{ subscription.name }} Subscription</h4>
             <!-- Subscription Icon -->
