@@ -14,7 +14,7 @@ def blog(request):
     template = 'blog/blog.html'
 
     if request.user.is_anonymous:
-        messages.error("Please sign up before tyou can do that!")
+        messages.error(request, "Please sign up before you can do that!")
         return redirect(reverse('account_signup'))
     else:
         context = {
