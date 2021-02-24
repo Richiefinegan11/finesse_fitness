@@ -43,7 +43,7 @@ class Subscription(models.Model):
     
     name = models.CharField(max_length=10)
     price = models.DecimalField(max_digits=5, decimal_places=2)
-    priority = models.CharField(max_length=10, choices=access)
+    priority = models.CharField(max_length=10, choices=access, default=bronze)
     meal_plan = models.CharField(max_length=20, choices=meals, default=three)
     first_order_discount=models.IntegerField('First Order Discount', default=0)
     shop_discount = models.IntegerField(default=0)

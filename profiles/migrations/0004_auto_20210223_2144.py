@@ -15,6 +15,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='userprofile',
             name='subscription',
-            field=models.ForeignKey(default='Bronze', on_delete=django.db.models.deletion.CASCADE, to='subscriptions.subscription'),
+            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='subscriptions.subscription'),
         ),
     ]

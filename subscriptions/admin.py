@@ -8,4 +8,5 @@ class SubscriptionAdmin(admin.ModelAdmin):
         'name',
         'price',
         'free_delivery',
+        
     )

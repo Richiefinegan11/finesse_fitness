@@ -12,7 +12,7 @@ class Blog(models.Model):
     image_url = models.URLField(max_length=1024, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
     comments  = models.TextField()
-    blog_user = models.ForeignKey(UserProfile, null=True, blank=True, on_delete=models.CASCADE)
+    user = models.ForeignKey(UserProfile, null=True, blank=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
