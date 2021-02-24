@@ -1,18 +1,28 @@
 from profiles.models import UserProfile
 from django.db import models
+from django.contrib.auth.models import User
 
+
+STATUS = (
+    (0,"Draft"),
+    (1,"Publish")
+)
 
 class Blog(models.Model):
     """
     Creates a blog type model
     """
 
-    title = models.CharField(max_length=120)
-    blog_content = models.TextField()
-    image_url = models.URLField(max_length=1024, null=True, blank=True)
-    image = models.ImageField(null=True, blank=True)
-    comments  = models.TextField(null=True, blank=True)
-    user = models.ForeignKey(UserProfile, null=True, blank=True, on_delete=models.CASCADE)
+    title = models.CharField(max_length=200, unique=True)
+    slug = models.SlugField(max_length=200, unique=True)
+    author = models.ForeignKey(User, on_delete= models.CASCADE,related_name='blog_posts')
+    updated_on = models.DateTimeField(auto_now= True)
+    content = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
+    status = models.IntegerField(choices=STATUS, default=0)
+
+    class Meta:
+        ordering = ['-created_on']
 
     def __str__(self):
         return self.title
