@@ -11,7 +11,7 @@ class Blog(models.Model):
     blog_content = models.TextField()
     image_url = models.URLField(max_length=1024, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
-    comments  = models.TextField()
+    comments  = models.TextField(null=True, blank=True)
     user = models.ForeignKey(UserProfile, null=True, blank=True, on_delete=models.CASCADE)
 
     def __str__(self):
