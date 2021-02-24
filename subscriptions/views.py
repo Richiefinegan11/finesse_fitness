@@ -1,5 +1,4 @@
 from django.contrib.messages.api import success
-import stripe
 
 from django.conf import settings
 from django.db import models
@@ -9,7 +8,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http.response import JsonResponse, HttpResponse
 
 
-from .models import Subscription, StripeCustomer
+from .models import Subscription
 from profiles.models import UserProfile
 from django.contrib import messages
 from django.contrib.auth.models import User
@@ -53,7 +52,9 @@ def subscription_type(request):
     if request.user.is_authenticated:
         return redirect(reverse('subscription_checkout'))
 
+    messages.error(request,'Please sign up for an account before registering for a subscription')
     return redirect(reverse('account_signup'))
+    
 
 
 @login_required

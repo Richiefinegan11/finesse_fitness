@@ -66,17 +66,3 @@ class Subscription(models.Model):
         elif self.shop_discount and self.shop_discount < 0:
             raise ValidationError(_("Overall Discount"
                                     " Value can't be negative"))
-
-    
-
-class StripeCustomer(models.Model):
-    """
-    Create a model to store customer information needed
-    for Stripe Subscription payments
-    """
-    user = models.OneToOneField(to=User, on_delete=models.CASCADE)
-    stripeCustomerId = models.CharField(max_length=255)
-    stripeSubscriptionId = models.CharField(max_length=255)
-
-    def __str__(self):
-        return self.user.username
