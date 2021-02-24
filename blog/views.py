@@ -2,23 +2,13 @@ from subscriptions.views import subscriptions
 from django.shortcuts import redirect, render, reverse
 from .models import Blog
 from django.contrib import messages
-from profiles.models import UserProfile
+from django.views import generic
 
 
-def blog(request):
-    """
-    A view to return the blog page
-    """
-    # get the blog entries
-    blog = Blog.objects.all()
-    template = 'blog/blog.html'
+class BlogList(generic.ListView):
+    queryset = Blog.objects.filter(status=1).order_by('-created_on')
+    template_name = 'blog/blog.html'
 
-    if request.user.is_anonymous:
-        messages.error(request, "Please sign up before you can do that!")
-        return redirect(reverse('account_signup'))
-    else:
-        context = {
-            'blog': blog
-        }
-
-    return render(request, template, context)
+class BlogDetail(generic.DetailView):
+    model = Blog
+    template_name = 'blog/blog_detail.html'

@@ -12,34 +12,37 @@
 {% endblock %}
 
 {% block content %}
-    <div></div>
+  <header>
+    <div class="overlay"></div>
     <div class="container">
-        <div class="row text-red text-center">
-            <div class="col-12 mb-3">
-                <h3> Welcome to our blog, {{ user }}</h3>
-                <hr>
-            </div>
-        </div>
-        <div class="row justify-content-center">
-        {% for blogs in blog %}
-        <div id="accordion">
-            <div class="card">
-              <div class="card-header" id="headingOne">
-                <h5 class="mb-0 text-red">
-                  <button class="btn" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    {{ blogs.title }}
-                  </button>
-                </h5>
-              </div>
-          
-              <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                <div class="card-body">
-                    {{ blogs.blog_content }}
+        <div class="row">
+            <div class="col-12 mx-auto">
+                <div class="text-center">
+                    <h3 class="my-4 mt-3 text-red"> Welcome to my Blog, <span class="text-uppercase">{{ user }}</span> </h3>
+                    <p class="text-red"> &nbsp
+                    </p>
+                    <hr>
                 </div>
-              </div>
             </div>
-          </div>
-        {% endfor %}
         </div>
     </div>
+  </header>
+  <div class="container">
+    <div class="row">
+        <!-- Blog Entries Column -->
+        <div class="col-12 mt-3 left">
+            {% for post in blog_list %}
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h2 class="card-title text-red">{{ post.title }}</h2>
+                    <p class="card-text text-muted h6">{{ post.author }} | {{ post.created_on}} </p>
+                    <p class="card-text">{{post.content|slice:":200" }}</p>
+                    <a href="{% url 'blog_detail' post.slug  %}" class="btn btn-red">Read More &rarr;</a>
+                </div>
+            </div>
+            <hr>
+            {% endfor %}
+        </div>
+    </div>
+  </div>
 {% endblock %}

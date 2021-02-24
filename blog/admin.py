@@ -1,9 +1,10 @@
 from django.contrib import admin
-from blog.models import Blog
+from .models import Blog 
 
+class BlogPost(admin.ModelAdmin):
+    list_display = ('title', 'slug', 'status','created_on')
+    list_filter = ("status",)
+    search_fields = ['title', 'content']
+    prepopulated_fields = {'slug': ('title',)}
 
-@admin.register(Blog)
-class BlogAdmin(admin.ModelAdmin):
-    list_display = (
-        'title',
-    )
+admin.site.register(Blog, BlogPost)
