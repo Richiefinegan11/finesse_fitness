@@ -29,7 +29,7 @@ SECRET_KEY = 'yluybv)cf00x(^7oxs7%+70_0ganb-z+-q4s8#tmk*#b6o885s'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['finesse-fitness.herokuapp.com', 'localhost']
 
 
 # Application definition
