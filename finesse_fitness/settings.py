@@ -125,17 +125,17 @@ WSGI_APPLICATION = 'finesse_fitness.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-if 'DATABASE_URL' in os.environ:
-    DATABASES = {
-    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+# if 'DATABASE_URL' in os.environ:
+# DATABASES = {
+# 'default': dj_database_url.parse('postgres://yzlomiqaeqiouw:e1628e7de454a760b815c145d071b53cbd524d73aacbd03c7b3eb3226ffaefe1@ec2-54-247-158-179.eu-west-1.compute.amazonaws.com:5432/da9t6eoidu9kot')
+# }
+# else:
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        }
-    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
