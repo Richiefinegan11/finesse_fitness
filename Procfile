@@ -1,0 +1,1 @@
+web: gunicorn finesse_fitness.wsgi:application
