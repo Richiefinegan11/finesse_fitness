@@ -225,6 +225,9 @@ hr {
   .landing-text-container {
     padding-top: 5rem;
   }
+  .mob-nav {
+      font-size: small;
+  }
 }
 /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */
 @media (min-width: 481px) {
@@ -248,7 +251,7 @@ hr {
   }
 
   .landing-text-container {
-    padding-top: 16rem;
+    padding-top: 10rem;
   }
 }
 
