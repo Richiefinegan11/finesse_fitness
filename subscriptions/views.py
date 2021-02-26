@@ -172,3 +172,4 @@ def subscription_update(request):
     messages.success(request, 'Successfully Subscribed!')
 
     return redirect(reverse('profile'))
+

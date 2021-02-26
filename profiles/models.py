@@ -16,7 +16,7 @@ class UserProfile(models.Model):
     """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     subscription = models.ForeignKey(
-        Subscription, on_delete=models.CASCADE, null=True, blank=True)
+        Subscription, on_delete=models.CASCADE, default=True)
     user_full_name = models.CharField(max_length=50, null=True, blank=True)
     user_email = models.EmailField(max_length=254, null=True, blank=True)
     user_phone_number = models.CharField(max_length=20, null=True, blank=True)
