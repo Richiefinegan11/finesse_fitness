@@ -89,7 +89,6 @@
                                 <div class="card-footer bg-white pt-0 border-0 text-left">
                                     <div class="row">
                                         <div class="col">
-                                            
                                             <p class="lead mb-0 text-left font-weight-bold text-red">€{{ product.price }}</p>
                                             {% if product.gender %}
                                                 {% if product.gender == 'Men' %}
@@ -124,6 +123,11 @@
                                                     <a class="text-danger" href="{% url 'delete_product' product.id %}">Delete</a>
                                                 </small>
                                             {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col text-left">
+                                            <a class="btn btn-red mt-3" href="{% url 'product_detail' product.id %}">Buy Now</a>
                                         </div>
                                     </div>
                                 </div>

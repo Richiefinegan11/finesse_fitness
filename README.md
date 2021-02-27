@@ -205,11 +205,36 @@ easily add my details without too many steps so that I don't get discouraged by 
 ## Features
 ### Existing Features
 #### Common Features Across Pages
-  * Header - facilitates an effortless navigation across all pages
+* Header - facilitates an effortless navigation across all pages
   * The header is positioned to always be visible at the top of the screen (mobile, tablet, and desktop) which allows visitors to find it quickly.
   * The brand logo is positioned at the top of the page in the header and redirects the user back to the home page. This allows the user to easily find the homepage.
   * The page navigation is located in the header at the top of the page on desktop and laptop sizes and collapsable top navigation for mobiles and tablets. This adheres to the navigation conventions allowing the user to intuitively navigate the page.
-  * 
+  * Navigation links collapse in a personalized hamburger menu when viewed in mobile sizes.
+  * User icon is a dropdown menu displaying 'Register' and 'Log In' for the unauthorized user and 'My Profile' and 'Logout for an authorized user.
+* Heading
+  * All headings are styled in the same manner to let the user understand the page structure quickly.
+*  Links/buttons
+   * All links have a hover effect and are noticeably different than the rest of the text around them, indicating that they are clickable.
+   * All external links open in a new tab to allow the user to easily navigate back to the page.
+   * Buttons are outlined, with transparent background. On hover the background is filled in to match the border of the button, indicating that the button is clickable.
+*  Footer
+   * Footer is always displayed at the bottom of the page, regardless of the content size.
+   * Socials are displayed and grouped. They are displayed in the footer to adhere to the convention and let the user locate them quickly.
+*  Messages and Bag Toast
+   * A feedback is provided to the user throughout the whole page. 
+   * The messages shown are colored to match the tone of the message - whether it's a success message or an error message.
+   * Bag Toast, similarly to Messages is displayed as a pop-up and across the whole page indicated to the user what the total is and what items have been added to the cart.
+   * User can easily change the number of items from this cart and remove them altogether.
+   * User can dismiss the toast with an 'x' close button.
+#### Features Specific to Pages
+*  Home Page
+   *  Hero image with a short description and a call-to-action to let users join (register to the page).
+   *  A section describing the benefits of the site with a call to action to subscribe to the page.
+   *  A section that shows all the benefits of joing the site.
+   *  A section with an image of equipment and a call-to-action to bring the users to the shop.
+* Shop Page
+  * Items displayed in a responsive grid layout to accommodate all screen sizes
+  * Only the most important information is displayed on the card such as title, rating, price, and 'Buy Now' button.
 ### Login/Register 
 
 #### Register
