@@ -314,32 +314,140 @@ easily add my details without too many steps so that I don't get discouraged by 
 * The relation of the models are displayed in the image below
   ![Relationship](readme_docs/MockUp.png)
 ## Technologies Used
-* Languages Used
-  * [HTML5]()
-  * [CSS3]()
-  * [JavaScript]()
-  * [Python]()
-## Database Used
-
+#### Languages Used
+  * [HTML5](https://en.wikipedia.org/wiki/HTML5)
+  * [CSS3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
+  * [JavaScript](https://www.javascript.com/)
+  * [Python](https://www.python.org/)
+#### Frameworks, Libraries and Programs Used
+* Front-End
+  * [Bootstrap 5.0](https://getbootstrap.com/) - Used for the responsive layout as well as the navigation, header, footer, forms, dropdowns, item cards, modals.
+  * [Font Awesome](https://fontawesome.com/) - Font Awesome was used to add social media icons at the bottom of the page and icons
+  * [Google Fonts](https://fonts.google.com/) - Google Fonts was used to import 'Montserrat' font in the style.css file.
+  * [jQuery 3.5.1](https://jquery.com/) - Used in stripe javascript logic
+* Back-End
+ * [Django](https://www.djangoproject.com/) - used as the main framework to build the project.
+ * [Stripe](https://stripe.com/) - used to facilitate single payments and subscription plans
+ * [Psycopg2](https://pypi.org/project/psycopg2/) - used to allow postgresSQL to be used with python
+ * [Django Crispy Forms](https://django-crispy-forms.readthedocs.io/en/latest/) - used to display forms
+ * [Gunicorn](https://pypi.org/project/gunicorn/) - deployment tool
+ * [Boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html) - aid the deployment of AWS S3
+ * [Pillow](https://pillow.readthedocs.io/en/stable/) - image proccessing tool in python
+ * [Whitenoise](http://whitenoise.evans.io/en/stable/) - aids static file management and serving
+ * [pip3](https://pip.pypa.io/en/stable//) - used to install all packages in python
+ * [SQlite3](https://www.sqlite.org/index.html) - used as a database in development
+ * [PostgreSQL](https://www.postgresql.org/) - used as a database in deployment
+ * [AWS S3](https://aws.amazon.com/) - used to store images and static files displayed in the deployed site
+* General
+  * [Git](https://git-scm.com/) - Git was used to allowing for tracking of any changes in the code and version control.
+  * [Github](https://github.com/) - GitHub is used to host the project files.
+  * [Visual Studio Code](https://code.visualstudio.com/) - IDE used to compile the code as well as facilitate a virtual environment.
+  * [Heroku](https://dashboard.heroku.com/apps) - A cloud platform used to deploy the web application.
+  * [Balsamiq](https://balsamiq.com/wireframes/desktop/#) - Used for wireframes
 ## Testing
-
+All testing was documented in TESTING.md file
+📊 👈 testing.md
 ## Deployment
-### Deploying Online 
+#### Local
+* Instructions to run the project on your local device using an IDE
+  
+#### Pre-requisites
+* Python 3 - used to write the code and to run the project
+* PIP - used to install packages
+* Git - used for version control
+* Visual Studio Code or any IDE of your choice - used to compile the code.
+* Stripe Account
 
-### Local Deployment
+#### Recommended
+* A virtual environment of your choice - used to contain all installations and packages and prevents clashing projects that might use the same package but different versions.
+  * Python 3 has a built-in virtual environment venv. The commands might differ depending on your Operating System, it is advised to read the docs to ensure accuracy.
+#### Steps
+1. Go to the project [repository](https://github.com/Richiefinegan11/finesse_fitness)
+2. Get the files used by using one of the methods below:
+  * Download the files used by clicking the 'Code' button located in the top section of the repository. Then select 'Download ZIP' and unzip the files in the directory of your choice.
+  * Clone the repository by running the following command from your IDE
+    * 'gh repo clone Richiefinegan11/finesse_fitness'
+3. In your IDE, navigate to the project directory where you located downloaded files/cloned the repo
+  * 'cd path/to/your/folder
+4. Activate your virtual environment. If using Python's venv:
+  * 'source .venv/bin/activate'
+  * on Windows where .venv is the name you gave previously
+5. Install all reqauirements from requirements.txt file
+  *  pip3 install -r requirements.txt
+6. Create a file env.py to store environment variables
+7. Add environment variable in the format as shown below:
+  * os.environ.setdefault('SECRET_KEY', '<your-variable-goes-here>')
+ os.environ.setdefault('DEVELOPMENT', '1')
+ os.environ.setdefault('ALLOWED_HOSTS', '<your-variable-goes-here>')
+ os.environ.setdefault('STRIPE_PUBLIC_KEY', '<your-variable-goes-here>')
+ os.environ.setdefault('STRIPE_SECRET_KEY', '<your-variable-goes-here>')
+ os.environ.setdefault('STRIPE_WH_SECRET_CH', '<your-variable-goes-here>')
+ os.environ.setdefault('STRIPE_WH_SECRET_SUB', '<your-variable-goes-here>')
 
-## Credits 
+where
 
-### Content 
+* SECRET_KEY value is a key of your choice, to ensure appropriate seccurity measures, this can be generated using Django Secret Key Generator
+* DEVELOPMENT is set to 1 and is ised in settings.py logic to ensure file is dynamic between local and remote setups
+* STRIPE_WH_SECRET value is obtained from the Stripe website in conjunction of using ngrok to host the server
+Getting Webhooks API value
+* ALLOWED_HOSTS this should be set to your ngrok url
 
+8. Run the application
+  * ' python3 manage.py runserver'
+9. Website should be available on a link similar to http://127.0.0.1:8000. (check your IDE terminal)
+10. Note: python3 and pip3 commands can vary depending on version/machine/IDE you're using. Always check docs if unsure.
 
+### Remote
+#### Pre-requisites
+ * Set up [Heroku](www.heroku.com) Account and app
+ * Create [AWS](https://aws.amazon.com/) account and upload static files used in the project
+
+#### Steps
+
+1. In Heroku, go to Resources and search for Heroku Postgres, we will use this as our development database
+    * Select 'Hobby Dev - Free' and click to Submit Order Form
+2. Comment out the 'SQLite and Postgres databases' section in the settings.py file and uncomment 'Postgres Database' section. Add your DATABASE_URL link obtained from Heroku Config Vars
+    *  DATABASES = {
+     'default': dj_database_url.parse('your-url-goes-here')
+ }section of the repository. Then select 'Download ZIP' and unzip the files in the directory of your choice.
+3. Migrate your models to Postgres SQL database
+    *  python3 manage.py migrate
+4. If you have a JSON file with products displayed on the site, import them now in this order
+     * 'python3 manage.py loaddata categories'
+     * 'python3 manage.py loaddata products'
+5. Create a superuser that will be used to access the admin page as well as to manage the database. Enter username, password, and e-mail as required
+     * python3 manage.py createsuperuser
+6. In settings.py delete the 'Postgres SQL Database' section (make sure you don't commit your DATABASE_URL link!) and un-comment 'SQLite and Postgres SQL Databases' section - this will allow for use of either of the databases interchangeably
+7. Freeze dependencies in a requirements.txt file (if it hasn't been created/updated before)
+    * pip3 freeze --local > requirements.txt
+8. Create a Procfile that tells Heroku to create a web dyno and add the following line in it, where the-name-of-your-app is the name of your django project
+  * web: gunicorn the-name-of-your-app.wsgi:application
+9. Add, commit and push your changes up to GitHub
+10. Go to Heroku and add all of the following environmental variables (Settings > Reveal Config Vars)
+![Heroku Config Vars](readme_docs/HerokuConfig.png)
+11.  In Heroku go to Deploy that's located at the top of the site
+![Heroku Config Vars](readme_docs/HerokDeploy1.png)
+13. Click on Enable Automatic Deploys and then Deploy Branch, you should see a successful build here
+![Heroku Config Vars](readme_docs/deploy-branch.png)
+14. Open your app
+![Heroku Config Vars](readme_docs/open-app.png)
+15. You should see static/ folder with your static files in it in you S3 bucket.
+16. In your S3 bucket, add media/ folder.
+17. If you didn't use JSON filer for product import, now is a good time to navigate to your-ulr/admin/ page and add the Products and Categories in.
+18. Your app should be deployed and you should be able to see your added products.
+## Credits
+#### Code 💾
+* Code Institue Boutique Ado
+
+#### Media 🎬
+* all images taken from unspalsh, Lifestyle Sports and Template Monster
 ### Acknowledgements
 
-Jonathan Munz (Code Institute Mentor) - For his advice, helpful feedback, and reassurance towards the end of this project, as always.
+Big thanks to Jonathan Munz (Code Institute Mentor) - For his advice, helpful feedback, and reassurance towards the end of this project, as always.
 
-The Code Institute Slack Community - which was so helpful, especially for this project. Viewing other student's projects helped me a lot with my own. I would especially like to thank [Lewis](https://code-institute-room.slack.com/team/USRLF3J0M) and [Lige](https://code-institute-room.slack.com/team/UT8PXGLTZ) for their feedback in the peer code review channel
+The Code Institute Slack Community - which was so helpful, especially for this project.
 
-My friends and family, especially Catherine and Jordan for their very helpful feedback for this site.
+My friends and family, especially Catherine, Jordna, Aaron and Paul for their very helpful feedback for this site.
 
 ### Disclaimer
 The content of this Website is for educational purposes only
