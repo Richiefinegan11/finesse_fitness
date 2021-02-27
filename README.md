@@ -287,8 +287,38 @@ easily add my details without too many steps so that I don't get discouraged by 
   ### Database
   * The databse used for this project was [PostgresSQL](https://www.postgresql.org/) for deployed project anf [SQLite](https://www.sqlite.org/index.html) on the local machin in development
 
-## Technologies Used
+### Structure
+* The data consists of 7 models accross 7 apps
+  * Home app - Displays the home page of the website.
+  * Checkout app - Handles the checkout pages and the checkout view for product purchase, including payments.
+    * Order Model - Holds information on each order. This is populated when user completes the checkout. The details entered in the checkout will populate this model as well as custom calculations for total amount and discount and delivery charge
+    ![Order Model](readme_docs/OrderModel.png)
+    * OrderLine Model that captures each item added to the cart and are used for calucations in the Order Model
+    ![Orde Line Item Model](readme_docs/OrdeLineItemModel.png)
+  * Subscriptions app - Displays different kinds of subscription plans, handles user subscription to subscription plans
+    * SubscriptionModel - contains subscription plans
+    ![SubscriptionModel](readme_docs/SubscriptionModel.png)
+  * Products app - Handles Product Display and Individual Item Detil view
+    * Category Model - Stores Item categories
+    ![Category Model](readme_docs/CategoryModel.png)
+    * Product Model - stores Individual Item information
+    ![Product Model](readme_docs/ProductModel.png)
+  * Profiles app - Handles Profile view and creating a profile whenever a user registers. It also handles Order History view and adds subscription as default to profile
+    * Profile Model - holds data on each user.
+    ![Product Model](readme_docs/UserProfileModel.png)
+  * Blog App - Handles the blog view
+    * Blog Model - holds data on the blog
+    ![Blog Model](readme_docs/BlogModel.png)
 
+### Relationship
+* The relation of the models are displayed in the image below
+  ![Relationship](readme_docs/MockUp.png)
+## Technologies Used
+* Languages Used
+  * [HTML5]()
+  * [CSS3]()
+  * [JavaScript]()
+  * [Python]()
 ## Database Used
 
 ## Testing
@@ -299,9 +329,7 @@ easily add my details without too many steps so that I don't get discouraged by 
 ### Local Deployment
 
 ## Credits 
-* JS
-  * [Stack Overflow](https://stackoverflow.com/questions/10960753/how-to-make-toggle-hidden-by-default)
-  * [Stack Overflow](https://stackoverflow.com/questions/10310717/toggle-show-hide-on-click-with-jquery)
+
 ### Content 
 
 
