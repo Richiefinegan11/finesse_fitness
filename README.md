@@ -206,48 +206,86 @@ easily add my details without too many steps so that I don't get discouraged by 
 ### Existing Features
 #### Common Features Across Pages
 * Header - facilitates an effortless navigation across all pages
-  * The header is positioned to always be visible at the top of the screen (mobile, tablet, and desktop) which allows visitors to find it quickly.
-  * The brand logo is positioned at the top of the page in the header and redirects the user back to the home page. This allows the user to easily find the homepage.
-  * The page navigation is located in the header at the top of the page on desktop and laptop sizes and collapsable top navigation for mobiles and tablets. This adheres to the navigation conventions allowing the user to intuitively navigate the page.
-  * Navigation links collapse in a personalized hamburger menu when viewed in mobile sizes.
-  * User icon is a dropdown menu displaying 'Register' and 'Log In' for the unauthorized user and 'My Profile' and 'Logout for an authorized user.
+  * The header is positioned to always be visible at the top of the screen (mobile, tablet, and desktop) which allows visitors to find it quickly
+  * The brand logo is positioned at the top of the page in the header and redirects the user back to the home page. This allows the user to easily find the homepage
+  * The page navigation is located in the header at the top of the page on desktop and laptop sizes and collapsable top navigation for mobiles and tablets. This adheres to the navigation conventions allowing the user to intuitively navigate the page
+  * Navigation links collapse in a personalized hamburger menu when viewed in mobile sizes
+  * User icon is a dropdown menu displaying 'Register' and 'Log In' for the unauthorized user and 'My Profile' and 'Logout for an authorized user
 * Heading
-  * All headings are styled in the same manner to let the user understand the page structure quickly.
+  * All headings are styled in the same manner to let the user understand the page structure quickly
 *  Links/buttons
-   * All links have a hover effect and are noticeably different than the rest of the text around them, indicating that they are clickable.
-   * All external links open in a new tab to allow the user to easily navigate back to the page.
-   * Buttons are outlined, with transparent background. On hover the background is filled in to match the border of the button, indicating that the button is clickable.
+   * All links have a hover effect and are noticeably different than the rest of the text around them, indicating that they are clickable
+   * All external links open in a new tab to allow the user to easily navigate back to the page
+   * Buttons are outlined, with transparent background. On hover the background is filled in to match the border of the button, indicating that the button is clickable
 *  Footer
-   * Footer is always displayed at the bottom of the page, regardless of the content size.
-   * Socials are displayed and grouped. They are displayed in the footer to adhere to the convention and let the user locate them quickly.
+   * Footer is always displayed at the bottom of the page, regardless of the content size
+   * Socials are displayed and grouped. They are displayed in the footer to adhere to the convention and let the user locate them quickly
 *  Messages and Bag Toast
-   * A feedback is provided to the user throughout the whole page. 
+   * A feedback is provided to the user throughout the whole page
    * The messages shown are colored to match the tone of the message - whether it's a success message or an error message.
-   * Bag Toast, similarly to Messages is displayed as a pop-up and across the whole page indicated to the user what the total is and what items have been added to the cart.
-   * User can easily change the number of items from this cart and remove them altogether.
-   * User can dismiss the toast with an 'x' close button.
+   * Bag Toast, similarly to Messages is displayed as a pop-up and across the whole page indicated to the user what the total is and what items have been added to the cart
+   * User can easily change the number of items from this cart and remove them altogether
+   * User can dismiss the toast with an 'x' close button
 #### Features Specific to Pages
 *  Home Page
-   *  Hero image with a short description and a call-to-action to let users join (register to the page).
-   *  A section describing the benefits of the site with a call to action to subscribe to the page.
-   *  A section that shows all the benefits of joing the site.
-   *  A section with an image of equipment and a call-to-action to bring the users to the shop.
+   *  Hero image with a short description and a call-to-action to let users join (register to the page)
+   *  A section describing the benefits of the site with a call to action to subscribe to the page
+   *  A section that shows all the benefits of joing the site
+   *  A section with an image of equipment and a call-to-action to bring the users to the shop
 * Shop Page
   * Items displayed in a responsive grid layout to accommodate all screen sizes
-  * Only the most important information is displayed on the card such as title, rating, price, and 'Buy Now' button.
-### Login/Register 
+  * Only the most important information is displayed on the card such as title, rating, price, and 'Add to Bag' button. Also size and gender if applicable
+  * Item image can be clicked to bring the user to the details page
+  * Page has category buttons at the top so that user can easily filter all items by categories or all
+  * Sort icons that can sort items by rating, price and name
+*  Product Detail Page
+  * Keep Shoping button that brings the user back to the previous page
+  * Rating displayed
+  * Description of the product which allows users to gain more information on the product
+  * Quantity adder that allows the user to increase items and display price as the item quantity is changed
+  * Add to the bag button that adds an item to the bag
+  * A size selection box, that lets the user change the size of the product if it is applicable
+* Subscriptions Page
+  * User will be automatically given a free bronze subscription by default, upon registering to the site
+  * All Subscriptions are displayed side by side to allow the user to compare them all and make decision
+  * Subscribe button redirects a user that is not registered to the Register page
+  * Change button will bring a user to the subscription checkout page
+* Subscriptions Checkout
+  * Displays chosen subscription it's benefits
+  * User can confirm or cancel, if confirmed, their card will be charged for the amount due.
+* Bag Page
+  * Displays summary of items with the subtotal including the delivery.
+  * Delivery Details are provided as a form using crispy forms.
+  * Quantity adder that allows the user to increase items and display price as the item quantity is changed
+  * User can remove item if needed with remove link
+* Checkout Page
+  * Order Summary is displayed on the right or small screens down the center
+  * Delivery Details are provided as a form using crispy forms
+  * User can save their delivery details to their profile if they have one, otherwise, they are offered sign in and sign up buttons
+  * User is provided with a secure way to enter their bank details in.
+* Checkout Success Page
+  * Order Details are provided to the user as a confirmation on top of the e-mail that has been sent to them
+* Profile Page
+  * Profile Page uses crispy forms form that displays to the user any details that the user has saved. They can be edited or added to this page
+  * The user's order history is shown on this page
+  * User's Subscription summary is shown with the name and the price of it and the discount they get
+  * 'Shop Now' button brings the user to the shop
+* Blog
+  * Welcomes the user to the page with their name shown at the top of the page
+  * The blog entries are show in rows with the title, author, date and blog content cut off at 200 characters
+  * Read more button brings the user to the blog that is selected
+* Blog Detail
+  * Shows the blog title, author and date and the dull blog content
 
-#### Register
+#### Future Features
+*  Implement stripe for subscriptions to handle yearly charges
+*  One to One PT page
+*  Meal plan for subcribed users
+* Add Apple pay to payments and Google sign-in
 
-#### Login/Register page content
-
-### Book Review 
-
-### Write Review
-
-### Profile
-
-### Features left to implement
+## Information Architecture
+  ### Database
+  * The databse used for this project was [PostgresSQL](https://www.postgresql.org/) for deployed project anf [SQLite](https://www.sqlite.org/index.html) on the local machin in development
 
 ## Technologies Used
 
