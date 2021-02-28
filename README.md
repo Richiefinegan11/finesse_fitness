@@ -61,10 +61,8 @@ Features worth doing:
   * Sort all items by date added, name or price so that I can identify new products, products that fit my budget, and find easier what I'm looking for.
   * Search for an item from anywhere on the site so that I can easily find what I'm looking for.
   * Be able to see the price of the item without clicking into it so that I can easily decide if I can afford the item.
-  * Be able to quickly add the item without having to click on the product so that I can save time if I know that I want to purchase the item.
   * Be able to see more details about the product so that I can make an educated decision of whether to purchase the item.
   * Select the quantity of the product so that I can choose how many products I'm purchasing and not have to add the same item multiple times.
-  * Be able to see the rating and reviews to allow me to judge if the item is worth the price based on other feedback.
   * See my shopping cart as items are added to know how the total without having to go to another page.
   * Edit the quantity of added items so that I don't have to remove and add items again.
   * Remove added items easily so that I can purchase only the items that I want.
@@ -73,7 +71,7 @@ Features worth doing:
   * View my order as I'm checking out to be able to confirm what I'm purchasing.
 easily add my details without too many steps so that I don't get discouraged by the lengthy checkout process.
   * Securely add my payment information so that I feel safe giving my card details.
-  * See Order confirmation and receive confirmation e-mail so that I have proof of purchase and order number.
+  * See Order confirmation.
   * Change from paid membership so that I don't have to pay for it.
   
 * As a member I want to:
@@ -81,7 +79,6 @@ easily add my details without too many steps so that I don't get discouraged by 
   * See my personal account information so that I can manage my details.
   * Change the membership easily so that I can control what benefits and expenses I'm having.
   * See my order history so that I can have the confirmation and details for all of them in one place and manage them easily.
-  * Can see the estimated date of delivery so that I can arrange to receive the package.
   * Receive benefits as a member so that I get my money's worth.
   
 * As an admin I want to:
@@ -421,15 +418,17 @@ Getting Webhooks API value
 7. Freeze dependencies in a requirements.txt file (if it hasn't been created/updated before)
     * pip3 freeze --local > requirements.txt
 8. Create a Procfile that tells Heroku to create a web dyno and add the following line in it, where the-name-of-your-app is the name of your django project
-  * web: gunicorn the-name-of-your-app.wsgi:application
+     * web: gunicorn the-name-of-your-app.wsgi:application
 9. Add, commit and push your changes up to GitHub
 10. Go to Heroku and add all of the following environmental variables (Settings > Reveal Config Vars)
 ![Heroku Config Vars](readme_docs/HerokuConfig.png)
 11.  In Heroku go to Deploy that's located at the top of the site
 ![Heroku Config Vars](readme_docs/HerokDeploy1.png)
-13. Click on Enable Automatic Deploys and then Deploy Branch, you should see a successful build here
+12. Click on the GitHub option and connect your GitHub account as well as your repo from GitHub (search for the repo name)
+![Heroku Config Vars](readme_docs/HerokuGitHub.png)
+13.  Click on Enable Automatic Deploys and then Deploy Branch, you should see a successful build here
 ![Heroku Config Vars](readme_docs/deploy-branch.png)
-14. Open your app
+14. Open your app  
 ![Heroku Config Vars](readme_docs/open-app.png)
 15. You should see static/ folder with your static files in it in you S3 bucket.
 16. In your S3 bucket, add media/ folder.

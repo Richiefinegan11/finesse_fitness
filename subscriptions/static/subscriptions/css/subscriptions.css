@@ -1,16 +1,15 @@
 .badge-gold {
-    color:  #d4af37 ;
+  color: #d4af37;
 }
 
 .badge-silver {
-    color: #aaa9ad;
+  color: #aaa9ad;
 }
 
 .badge-bronze {
-    color: #b08d57;
+  color: #b08d57;
 }
 
 .border-sub {
-    border: 3px solid #a30202 !important;
-    
+  border: 3px solid #a30202 !important;
 }
