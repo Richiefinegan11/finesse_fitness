@@ -264,8 +264,17 @@
   * Have oversight of the user data so that if anyone is experiencing an issue I can investigate and resolve the issue.
     * This can be achieved from the admin page
   * Add new blog entries as needed
-    * This can be achieved from the admin page
+    * This can be achieved from the admin page reaches the footer
 
+# Bugs and comments
+* Bugs:
+  * While doing this project, I ran in to alot of issues which made time scarce.
+    * Git pod was down for the first 3 days of the project, I had chose to us VS code which delayed me further
+    * Deployment -  On deployment, I ran in to many issues as I had to install alot of technologies to get my IDE working, that were outside of the scope of the course.
+* Existing Bugs:
+  * The subscription discount still needs to be applied to the user on checkout. I ran out of time to implement this.
+  * The footer does not stick to the bottom of the page where there is not full content, eg. sign-up page.
+  * The back to the top button stops functioning when enters the footer
 
 # Future Testing
 - Future testing will include automated tests such as Jasmine for JS and built-in Django automated testing for Python and implement Travis CI.

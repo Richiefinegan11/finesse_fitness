@@ -5,8 +5,8 @@ This is not your standard e-commerce website, it's also a community, a lifestyle
 
 # Table of content
 * [UX](#UX)
-* [Wireframes](#Wireframes)
 * [Features](#Features)
+* [Information Architecture](#Information-Architecture)
 * [Technologies Used](#Technologies-Used)
 * [Testing](#Testing)
 * [Deployment](#Deployment)
@@ -443,6 +443,8 @@ Getting Webhooks API value
 ### Acknowledgements
 
 Big thanks to Jonathan Munz (Code Institute Mentor) - For his advice, helpful feedback, and reassurance towards the end of this project, as always.
+
+Big thanks to the tutors who have been nothing but helpful and efficient in helping me to solve the problem that arose throughout this whole course
 
 The Code Institute Slack Community - which was so helpful, especially for this project.
 
